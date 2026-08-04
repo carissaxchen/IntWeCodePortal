@@ -120,10 +120,10 @@ export default function ArchivePage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-purple-900 dark:text-purple-200">WECode History Archive</h1>
+        <h1 className="text-2xl font-bold text-[#DB5863]">WECode History Archive</h1>
         <p className="mt-2 text-gray-500 dark:text-gray-400 text-sm max-w-2xl">
           Year-by-year record of WECode from 2014 to 2026. For current board structure and how WECode runs today, see the{' '}
-          <a href="/reference" className="text-purple-600 hover:underline">Reference</a> page.
+          <a href="/reference" className="text-[#DB5863] hover:underline">Reference</a> page.
           Full details and documents are in Google Drive.
         </p>
       </div>
@@ -134,9 +134,9 @@ export default function ArchivePage() {
             key={year}
             className="rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900/20 overflow-hidden group"
           >
-            <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-purple-50 dark:hover:bg-purple-950/20 transition-colors list-none">
+            <summary className="flex items-center justify-between px-5 py-4 cursor-pointer hover:bg-[#F2C4CA]/30 transition-colors list-none">
               <div className="flex items-center gap-4">
-                <span className="text-xl font-bold text-purple-800 dark:text-purple-300">{year}</span>
+                <span className="text-xl font-bold text-[#DB5863]">{year}</span>
                 {year === 2020 && (
                   <span className="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">Canceled</span>
                 )}

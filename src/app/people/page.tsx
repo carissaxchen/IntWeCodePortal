@@ -9,9 +9,9 @@ const SUBTEAM_ORDER: Subteam[] = [
 ]
 
 const TAG_COLORS: Record<string, string> = {
-  'co-chair':           'bg-purple-100 text-purple-800',
-  'director':           'bg-indigo-100 text-indigo-800',
-  'associate director': 'bg-blue-100 text-blue-800',
+  'co-chair':           'bg-[#DB5863] text-white',
+  'director':           'bg-[#E37D8A] text-white',
+  'associate director': 'bg-[#F2C4CA] text-[#112536]',
 }
 
 export default async function PeoplePage() {
@@ -30,7 +30,7 @@ export default async function PeoplePage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-purple-900 dark:text-purple-200 mb-6">
+      <h1 className="text-2xl font-bold text-[#DB5863] mb-6">
         Board Directory
       </h1>
       <div className="space-y-8">
@@ -39,7 +39,7 @@ export default async function PeoplePage() {
           if (!members?.length) return null
           return (
             <section key={team}>
-              <h2 className="text-lg font-semibold text-purple-800 dark:text-purple-300 mb-3">
+              <h2 className="text-lg font-semibold text-[#112536] dark:text-[#F2C4CA] mb-3">
                 {team}
               </h2>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -49,7 +49,7 @@ export default async function PeoplePage() {
                     className={`rounded-xl border p-4 bg-white dark:bg-gray-900/20 ${
                       person.to_confirm
                         ? 'border-amber-300 dark:border-amber-700'
-                        : 'border-gray-200 dark:border-gray-700'
+                        : 'border-[#F2C4CA]'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -64,12 +64,12 @@ export default async function PeoplePage() {
                       {person.role}
                     </span>
                     <div className="mt-2 space-y-0.5 text-xs text-gray-500 dark:text-gray-400">
-                      {person.email && <p><a href={`mailto:${person.email}`} className="hover:text-purple-600">{person.email}</a></p>}
+                      {person.email && <p><a href={`mailto:${person.email}`} className="hover:text-[#DB5863]">{person.email}</a></p>}
                       {person.phone && <p>{person.phone}</p>}
                       {person.location && <p>{person.location}</p>}
                       {person.linkedin && (
                         <p>
-                          <a href={person.linkedin} target="_blank" rel="noreferrer" className="hover:text-purple-600">
+                          <a href={person.linkedin} target="_blank" rel="noreferrer" className="hover:text-[#DB5863]">
                             LinkedIn ↗
                           </a>
                         </p>

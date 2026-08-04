@@ -1,6 +1,6 @@
 export default function ReferencePage() {
   return (
-    <div className="max-w-4xl prose dark:prose-invert prose-purple">
+    <div className="max-w-4xl prose dark:prose-invert prose-rose">
       <h1>Reference Guide</h1>
       <p className="lead">
         Key information for WECode 2027 board members — the Vision and the Engine.
@@ -50,45 +50,51 @@ export default function ReferencePage() {
           {[
             {
               name: 'Engagement',
-              color: 'teal',
+              card: 'border-[#F2C4CA] bg-[#F2C4CA]/20',
+              head: 'text-[#DB5863]',
               desc: 'Builds and nurtures the WECode community — Tech Fellows, pre-conference events, alumni engagement, Innovation Challenge, and Tech Demos.',
               initiatives: ['Pre-Conference Events', 'Tech Demos', 'Tech Fellows', 'Alumni Engagement', 'Innovation Challenge'],
             },
             {
               name: 'Engineering',
-              color: 'blue',
+              card: 'border-[#112536] bg-[#112536]/5',
+              head: 'text-[#112536] dark:text-[#F2C4CA]',
               desc: 'Leverages technical expertise to optimize systems and scale operations across the global community.',
               initiatives: ['Web App / Portal', 'Matching Algorithms', 'Data Analytics', 'Feedback Mechanisms', 'Sponsor Call Helper'],
             },
             {
               name: 'Finance',
-              color: 'green',
+              card: 'border-[#DB5863] bg-[#DB5863]/5',
+              head: 'text-[#DB5863]',
               desc: 'Drives growth through strategic partnerships, sponsor relationships, and financial sustainability.',
               initiatives: ['Sponsorships', 'Reimbursements', 'Career Expo', 'Scholarships'],
             },
             {
               name: 'Logistics',
-              color: 'orange',
+              card: 'border-[#E37D8A] bg-[#E37D8A]/10',
+              head: 'text-[#E37D8A]',
               desc: 'Handles all operational infrastructure — venues, catering, accommodations, housing, and volunteers.',
               initiatives: ['Housing', 'Venue', 'Catering', 'Volunteers', 'Eventbrite & Ticketing'],
             },
             {
               name: 'Marketing & Strategy',
-              color: 'pink',
+              card: 'border-[#F2C4CA] bg-[#F2C4CA]/30',
+              head: 'text-[#DB5863]',
               desc: 'The face of WECode — brand narrative, social media, conference materials, merch, newsletter, and podcast.',
               initiatives: ['Advertisements / Pubbing', 'Social Media', 'Conference Materials', 'Board / Conference Merch', 'Newsletter', 'Podcast'],
             },
             {
               name: 'Programming',
-              color: 'indigo',
+              card: 'border-[#112536]/30 bg-[#112536]/5',
+              head: 'text-[#112536] dark:text-[#F2C4CA]',
               desc: 'Curates the heart of the conference through speaker selection, mentorship, and event design.',
               initiatives: ['Mentorship Circles', 'Speaker Gala', 'Managing Speaker Travels', 'In-Person / Virtual Speakers', 'Virtual Conference Platform'],
             },
           ].map((team) => (
-            <div key={team.name} className={`rounded-xl border border-${team.color}-200 dark:border-${team.color}-800 bg-${team.color}-50 dark:bg-${team.color}-950/20 p-4`}>
-              <h4 className={`font-semibold text-${team.color}-800 dark:text-${team.color}-300 mb-1`}>{team.name}</h4>
-              <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">{team.desc}</p>
-              <ul className="text-xs text-gray-500 dark:text-gray-400 space-y-0.5">
+            <div key={team.name} className={`rounded-xl border ${team.card} p-4`}>
+              <h4 className={`font-semibold ${team.head} mb-1`}>{team.name}</h4>
+              <p className="text-sm text-[#112536]/60 dark:text-[#F2C4CA]/60 mb-2">{team.desc}</p>
+              <ul className="text-xs text-[#112536]/50 dark:text-[#F2C4CA]/50 space-y-0.5">
                 {team.initiatives.map((i) => <li key={i}>· {i}</li>)}
               </ul>
             </div>
@@ -128,10 +134,10 @@ export default function ReferencePage() {
         <h3>Lifecycle</h3>
         <div className="not-prose overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
           <table className="min-w-full text-sm">
-            <thead className="bg-purple-50 dark:bg-purple-950/40">
+            <thead className="bg-[#F2C4CA]/40">
               <tr>
-                <th className="px-4 py-2 text-left font-semibold text-purple-800 dark:text-purple-300">Month</th>
-                <th className="px-4 py-2 text-left font-semibold text-purple-800 dark:text-purple-300">Activity</th>
+                <th className="px-4 py-2 text-left font-semibold text-[#DB5863]">Month</th>
+                <th className="px-4 py-2 text-left font-semibold text-[#DB5863]">Activity</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 dark:divide-gray-800 bg-white dark:bg-gray-900/20">
@@ -145,8 +151,8 @@ export default function ReferencePage() {
                 ['September', 'AD Recruitment + Onboarding · Board Retreat'],
                 ['October – January', 'Conference Planning · Winter Break'],
               ].map(([month, activity]) => (
-                <tr key={month} className="hover:bg-purple-50/30">
-                  <td className="px-4 py-2 font-medium text-purple-700 dark:text-purple-400 whitespace-nowrap">{month}</td>
+                <tr key={month} className="hover:bg-[#F2C4CA]/20">
+                  <td className="px-4 py-2 font-medium text-[#DB5863] whitespace-nowrap">{month}</td>
                   <td className="px-4 py-2 text-gray-600 dark:text-gray-400">{activity}</td>
                 </tr>
               ))}

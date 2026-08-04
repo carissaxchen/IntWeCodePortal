@@ -1,10 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #F9F5FF;
-  --foreground: #1A0533;
-  --wecode-purple: #6B21A8;
-  --wecode-purple-light: #A855F7;
+  --background: #ffffff;
+  --foreground: #112536;
+  --brand: #DB5863;
+  --brand-mid: #E37D8A;
+  --brand-light: #F2C4CA;
+  --border: #112536;
   --overdue: #DC2626;
   --due-soon: #D97706;
 }
@@ -16,8 +18,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0F0520;
-    --foreground: #F3E8FF;
+    --background: #0c1a24;
+    --foreground: #F2C4CA;
+    --border: #F2C4CA;
   }
 }
 

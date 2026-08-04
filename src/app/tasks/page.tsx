@@ -1,5 +1,5 @@
 import { createClient } from '@/lib/supabase-server'
-import { Task } from '@/types'
+import { Task, Person } from '@/types'
 import TasksClient from './TasksClient'
 
 export const dynamic = 'force-dynamic'
@@ -20,15 +20,22 @@ const MONTH_LABELS: Record<string, string> = {
 
 export default async function TasksPage() {
   const supabase = await createClient()
-  const { data: tasks, error } = await supabase
-    .from('tasks')
-    .select('*, owner:people(*)')
-    .order('month_bucket', { ascending: true })
-    .order('created_at', { ascending: true })
+  const [
+    { data: tasks, error: tasksError },
+    { data: people, error: peopleError },
+  ] = await Promise.all([
+    supabase.from('tasks').select('*, owner:people(*)').order('month_bucket').order('created_at'),
+    supabase.from('people').select('*').order('name'),
+  ])
 
-  if (error) {
-    return <p className="text-red-600">Failed to load tasks: {error.message}</p>
-  }
+  if (tasksError) return <p className="text-red-600">Failed to load tasks: {tasksError.message}</p>
+  if (peopleError) return <p className="text-red-600">Failed to load people: {peopleError.message}</p>
 
-  return <TasksClient initialTasks={tasks as Task[]} monthLabels={MONTH_LABELS} />
+  return (
+    <TasksClient
+      initialTasks={tasks as Task[]}
+      initialPeople={(people ?? []) as Person[]}
+      monthLabels={MONTH_LABELS}
+    />
+  )
 }

@@ -37,13 +37,13 @@ export default function Home() {
   return (
     <div>
       <div className="mb-10">
-        <h1 className="text-3xl font-bold text-purple-900 dark:text-purple-200">
+        <h1 className="text-3xl font-bold text-[#DB5863]">
           WECode 2027 Planning Hub
         </h1>
-        <p className="mt-2 text-purple-700 dark:text-purple-400 text-lg">
+        <p className="mt-2 text-[#E37D8A] text-lg">
           Theme: <strong>Against the Current</strong> — The future of tech is built upstream.
         </p>
-        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        <p className="mt-1 text-sm text-[#112536]/50 dark:text-[#F2C4CA]/50">
           Internal use only · Harvard WiCS
         </p>
       </div>
@@ -52,13 +52,13 @@ export default function Home() {
           <Link
             key={href}
             href={href}
-            className="group block rounded-xl border border-purple-200 dark:border-purple-800 bg-white dark:bg-purple-950/20 p-6 hover:border-purple-500 hover:shadow-md transition-all"
+            className="group block rounded-xl border border-[#F2C4CA] bg-white dark:bg-[#112536]/20 p-6 hover:border-[#DB5863] hover:shadow-md transition-all"
           >
             <div className="text-3xl mb-3">{icon}</div>
-            <h2 className="font-semibold text-purple-900 dark:text-purple-200 text-lg group-hover:text-purple-600">
+            <h2 className="font-semibold text-[#112536] dark:text-[#F2C4CA] text-lg group-hover:text-[#DB5863] transition-colors">
               {title}
             </h2>
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">{desc}</p>
+            <p className="mt-1 text-sm text-[#112536]/60 dark:text-[#F2C4CA]/60">{desc}</p>
           </Link>
         ))}
       </div>

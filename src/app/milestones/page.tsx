@@ -27,17 +27,17 @@ export default async function MilestonesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-purple-900 dark:text-purple-200 mb-6">Milestones</h1>
+      <h1 className="text-2xl font-bold text-[#DB5863] mb-6">Milestones</h1>
       <p className="text-sm text-gray-500 mb-6">Public-facing milestones by month for WECode 2027.</p>
 
-      <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+      <div className="overflow-x-auto rounded-xl border border-[#F2C4CA]">
         <table className="min-w-full text-sm">
-          <thead className="bg-purple-50 dark:bg-purple-950/40">
+          <thead className="bg-[#F2C4CA]/40">
             <tr>
-              <th className="px-4 py-3 text-left font-semibold text-purple-800 dark:text-purple-300 w-28">Month</th>
-              <th className="px-4 py-3 text-left font-semibold text-purple-800 dark:text-purple-300">General</th>
-              <th className="px-4 py-3 text-left font-semibold text-purple-800 dark:text-purple-300">Team Milestone</th>
-              <th className="px-4 py-3 text-left font-semibold text-purple-800 dark:text-purple-300">Team</th>
+              <th className="px-4 py-3 text-left font-semibold text-[#DB5863] w-28">Month</th>
+              <th className="px-4 py-3 text-left font-semibold text-[#DB5863]">General</th>
+              <th className="px-4 py-3 text-left font-semibold text-[#DB5863]">Team Milestone</th>
+              <th className="px-4 py-3 text-left font-semibold text-[#DB5863]">Team</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-gray-800 bg-white dark:bg-gray-900/20">
@@ -46,10 +46,10 @@ export default async function MilestonesPage() {
               // Deduplicate general_label per month (show once)
               const generalLabel = monthRows.find((r) => r.general_label)?.general_label
               return monthRows.map((row, i) => (
-                <tr key={row.id} className="hover:bg-purple-50/50 dark:hover:bg-purple-950/20">
+                <tr key={row.id} className="hover:bg-[#F2C4CA]/20">
                   {i === 0 && (
                     <td
-                      className="px-4 py-3 font-medium text-purple-700 dark:text-purple-400 align-top"
+                      className="px-4 py-3 font-medium text-[#DB5863] align-top"
                       rowSpan={monthRows.length}
                     >
                       {month}
