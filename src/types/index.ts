@@ -22,6 +22,7 @@ export interface Person {
   location?: string
   linkedin?: string
   to_confirm: boolean
+  wecode_year: number // 2027 = current board, earlier = alumni
   created_at: string
 }
 
@@ -35,6 +36,7 @@ export interface Task {
   subteam_tags: Subteam[]
   status: TaskStatus
   month_bucket: string // e.g. "2026-05"
+  sort_order: number
   created_at: string
 }
 

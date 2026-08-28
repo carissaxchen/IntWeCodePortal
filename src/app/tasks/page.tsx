@@ -24,7 +24,7 @@ export default async function TasksPage() {
     { data: tasks, error: tasksError },
     { data: people, error: peopleError },
   ] = await Promise.all([
-    supabase.from('tasks').select('*, owner:people(*)').order('month_bucket').order('created_at'),
+    supabase.from('tasks').select('*, owner:people(*)').order('month_bucket').order('sort_order').order('created_at'),
     supabase.from('people').select('*').order('name'),
   ])
 

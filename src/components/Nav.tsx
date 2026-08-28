@@ -1,6 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { Subteam } from '@/types'
+
+const SUBTEAMS: Subteam[] = [
+  'Engagement', 'Engineering', 'Finance', 'Logistics',
+  'Marketing & Strategy', 'Programming', 'Co-Chairs', 'All-Board',
+]
 
 const DO_THE_WORK = [
   { href: '/tasks', label: 'Task Tracker' },
@@ -27,6 +34,41 @@ function NavLink({ href, label }: { href: string; label: string }) {
     >
       {label}
     </Link>
+  )
+}
+
+function MyTeamSelector() {
+  const [myTeam, setMyTeam] = useState<string>('')
+
+  useEffect(() => {
+    setMyTeam(localStorage.getItem('wecode-my-team') ?? '')
+  }, [])
+
+  const handleChange = (val: string) => {
+    setMyTeam(val)
+    localStorage.setItem('wecode-my-team', val)
+    window.dispatchEvent(new StorageEvent('storage', { key: 'wecode-my-team', newValue: val }))
+  }
+
+  return (
+    <div className="px-3 space-y-1.5">
+      <p className="text-[10px] uppercase tracking-widest text-[#112536]/35 dark:text-[#F2C4CA]/35 font-semibold">
+        My team
+      </p>
+      <select
+        value={myTeam}
+        onChange={e => handleChange(e.target.value)}
+        className="w-full text-xs rounded-lg border border-[#F2C4CA] bg-white dark:bg-[#0c1a24] text-[#112536] dark:text-[#F2C4CA] px-2 py-1.5 focus:outline-none focus:border-[#DB5863] transition-colors"
+      >
+        <option value="">— All teams —</option>
+        {SUBTEAMS.map(s => <option key={s} value={s}>{s}</option>)}
+      </select>
+      {myTeam && (
+        <p className="text-[10px] text-[#DB5863]/70">
+          Task Tracker will filter to {myTeam}
+        </p>
+      )}
+    </div>
   )
 }
 
@@ -61,8 +103,9 @@ export default function Nav() {
         </div>
       </div>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-[#F2C4CA]">
+      {/* My Team selector */}
+      <div className="p-3 border-t border-[#F2C4CA] space-y-3">
+        <MyTeamSelector />
         <p className="text-[11px] text-[#112536]/30 dark:text-[#F2C4CA]/30 px-3">Internal use only</p>
       </div>
     </aside>
