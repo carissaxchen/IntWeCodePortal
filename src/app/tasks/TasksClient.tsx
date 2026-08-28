@@ -4,8 +4,6 @@ import {
   DndContext, DragOverlay, PointerSensor, useSensor, useSensors,
   closestCorners, useDroppable,
   type DragStartEvent, type DragOverEvent, type DragEndEvent,
-  type DraggableAttributes,
-  type SyntheticListenerMap,
 } from '@dnd-kit/core'
 import {
   SortableContext, useSortable, verticalListSortingStrategy, arrayMove,
@@ -49,12 +47,10 @@ interface RowProps {
   onToggle: (task: Task) => void
   onCycleStatus: (task: Task) => void
   onEdit: (task: Task) => void
-  dragListeners?: SyntheticListenerMap
-  dragAttributes?: DraggableAttributes
   isGhost?: boolean
 }
 
-function TaskRow({ task, updating, onToggle, onCycleStatus, onEdit, dragListeners, dragAttributes, isGhost }: RowProps) {
+function TaskRow({ task, updating, onToggle, onCycleStatus, onEdit, isGhost }: RowProps) {
   const od = isOverdue(task)
   const soon = isDueSoon(task)
   const isDone = task.status === 'done'
@@ -66,19 +62,8 @@ function TaskRow({ task, updating, onToggle, onCycleStatus, onEdit, dragListener
     }`}>
       {od && !isGhost && <div className="absolute inset-y-0 left-0 w-[3px] bg-red-500" />}
 
-      {/* Drag handle */}
-      <div
-        {...dragAttributes}
-        {...dragListeners}
-        className="pl-3 pr-1 py-3 shrink-0 cursor-grab active:cursor-grabbing text-[#112536]/20 opacity-0 group-hover:opacity-100 hover:text-[#112536]/50 transition-opacity touch-none select-none"
-        aria-label="Drag to reorder"
-      >
-        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 10 16">
-          <circle cx="2.5" cy="2" r="1.5"/><circle cx="7.5" cy="2" r="1.5"/>
-          <circle cx="2.5" cy="8" r="1.5"/><circle cx="7.5" cy="8" r="1.5"/>
-          <circle cx="2.5" cy="14" r="1.5"/><circle cx="7.5" cy="14" r="1.5"/>
-        </svg>
-      </div>
+      {/* Drag handle placeholder (real handle is in SortableTaskRow) */}
+      <div className="pl-3 pr-1 py-3 w-7 shrink-0" />
 
       {/* Checkbox */}
       <button
@@ -165,12 +150,22 @@ function SortableTaskRow(props: RowProps) {
     <div
       ref={setNodeRef}
       style={{ transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.25 : 1 }}
+      className="relative group"
     >
-      <TaskRow
-        {...props}
-        dragListeners={listeners ?? undefined}
-        dragAttributes={attributes}
-      />
+      {/* Drag handle — sits on top of TaskRow's placeholder div */}
+      <div
+        {...attributes}
+        {...listeners}
+        className="absolute left-0 top-0 bottom-0 w-7 flex items-center justify-center cursor-grab active:cursor-grabbing text-[#112536]/20 opacity-0 group-hover:opacity-100 hover:text-[#112536]/50 transition-opacity touch-none select-none z-10"
+        aria-label="Drag to reorder"
+      >
+        <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 10 16">
+          <circle cx="2.5" cy="2" r="1.5"/><circle cx="7.5" cy="2" r="1.5"/>
+          <circle cx="2.5" cy="8" r="1.5"/><circle cx="7.5" cy="8" r="1.5"/>
+          <circle cx="2.5" cy="14" r="1.5"/><circle cx="7.5" cy="14" r="1.5"/>
+        </svg>
+      </div>
+      <TaskRow {...props} />
     </div>
   )
 }
