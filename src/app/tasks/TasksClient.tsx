@@ -5,10 +5,10 @@ import {
   closestCorners, useDroppable,
   type DragStartEvent, type DragOverEvent, type DragEndEvent,
   type DraggableAttributes,
+  type SyntheticListenerMap,
 } from '@dnd-kit/core'
 import {
   SortableContext, useSortable, verticalListSortingStrategy, arrayMove,
-  type SyntheticListenerMap,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { createClient } from '@/lib/supabase-client'
