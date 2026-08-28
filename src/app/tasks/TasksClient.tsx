@@ -4,9 +4,11 @@ import {
   DndContext, DragOverlay, PointerSensor, useSensor, useSensors,
   closestCorners, useDroppable,
   type DragStartEvent, type DragOverEvent, type DragEndEvent,
+  type DraggableAttributes,
 } from '@dnd-kit/core'
 import {
   SortableContext, useSortable, verticalListSortingStrategy, arrayMove,
+  type SyntheticListenerMap,
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { createClient } from '@/lib/supabase-client'
@@ -47,8 +49,8 @@ interface RowProps {
   onToggle: (task: Task) => void
   onCycleStatus: (task: Task) => void
   onEdit: (task: Task) => void
-  dragListeners?: Record<string, unknown>
-  dragAttributes?: Record<string, unknown>
+  dragListeners?: SyntheticListenerMap
+  dragAttributes?: DraggableAttributes
   isGhost?: boolean
 }
 
@@ -66,8 +68,8 @@ function TaskRow({ task, updating, onToggle, onCycleStatus, onEdit, dragListener
 
       {/* Drag handle */}
       <div
-        {...(dragAttributes as Record<string, unknown>)}
-        {...(dragListeners as Record<string, unknown>)}
+        {...dragAttributes}
+        {...dragListeners}
         className="pl-3 pr-1 py-3 shrink-0 cursor-grab active:cursor-grabbing text-[#112536]/20 opacity-0 group-hover:opacity-100 hover:text-[#112536]/50 transition-opacity touch-none select-none"
         aria-label="Drag to reorder"
       >
@@ -166,8 +168,8 @@ function SortableTaskRow(props: RowProps) {
     >
       <TaskRow
         {...props}
-        dragListeners={listeners as Record<string, unknown>}
-        dragAttributes={attributes as Record<string, unknown>}
+        dragListeners={listeners ?? undefined}
+        dragAttributes={attributes}
       />
     </div>
   )
